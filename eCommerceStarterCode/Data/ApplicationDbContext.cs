@@ -13,11 +13,12 @@ namespace eCommerceStarterCode.Data
 
         }
 
+        public DbSet<Pictures> Pictures { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new RolesConfiguration());
+            //modelBuilder.ApplyConfiguration(new RolesConfiguration());
         }
 
     }
