@@ -29,24 +29,20 @@ namespace eCommerceStarterCode.Controllers
             return StatusCode(201, value);
         }
 
-        //    }
-        //    [HttpDelete("{MerchId}/{UserId}")]
-        //    public IActionResult Remove(int MerchId, string UserId)
-        //    {
-        //        var deleteProduct = _context.ShoppingCarts.Where(dp => dp.UserId == UserId && dp.MerchId == MerchId).SingleOrDefault();
-        //        if (deleteProduct == null)
-        //        {
-        //            return NotFound();
-        //        }
-        //        _context.ShoppingCarts.Remove(deleteProduct);
-        //        _context.SaveChanges();
-        //        return Ok(deleteProduct);
-        //    }
         [HttpGet]
         public IActionResult Get()
         {
             var pictures = _context.Pictures;
             return Ok(pictures);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var product = _context.Pictures.FirstOrDefault(picture => picture.PicturesId == id);
+            _context.Remove(product);
+            _context.SaveChanges();
+            return Ok();
         }
     }
 }
