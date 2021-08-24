@@ -24,44 +24,31 @@ namespace eCommerceStarterCode.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Pictures value)
         {
-            var userId = User.FindFirstValue("id");
-            value.UserId = userId;
-            try
-            {
-                _context.Pictures.Add(value);
-                _context.SaveChanges();
-                return StatusCode(201, value);
-            }
-            catch
-            {
-                return StatusCode(400, value);
-            }
-
+            _context.Pictures.Add(value);
+            _context.SaveChanges();
+            return StatusCode(201, value);
         }
-        //[HttpDelete("{MerchId}/{UserId}")]
-        //public IActionResult Remove(int MerchId, string UserId)
-        //{
-        //    var deleteProduct = _context.ShoppingCarts.Where(dp => dp.UserId == UserId && dp.MerchId == MerchId).SingleOrDefault();
-        //    if (deleteProduct == null)
-        //    {
-        //        return NotFound();
+
         //    }
-        //    _context.ShoppingCarts.Remove(deleteProduct);
-        //    _context.SaveChanges();
-        //    return Ok(deleteProduct);
-        //}
-        //[HttpGet(), Authorize]
-        //public IActionResult GetUserCart()
-        //{
-        //    var userId = User.FindFirstValue("id");
-        //    var userCart = _context.ShoppingCarts.Include(uc => uc.Merch).ThenInclude(ac => ac.User).Where(uc => uc.UserId == userId).ToList().
-        //        Select(e => new { merchName = e.Merch.Name, merchPrice = e.Merch.Price });
-        //    if (userCart == null)
+        //    [HttpDelete("{MerchId}/{UserId}")]
+        //    public IActionResult Remove(int MerchId, string UserId)
         //    {
-        //        return NotFound();
+        //        var deleteProduct = _context.ShoppingCarts.Where(dp => dp.UserId == UserId && dp.MerchId == MerchId).SingleOrDefault();
+        //        if (deleteProduct == null)
+        //        {
+        //            return NotFound();
+        //        }
+        //        _context.ShoppingCarts.Remove(deleteProduct);
+        //        _context.SaveChanges();
+        //        return Ok(deleteProduct);
         //    }
-        //    return Ok(userCart);
-        //}
+        [HttpGet]
+        public IActionResult Get()
+        {
+            var pictures = _context.Pictures;
+            return Ok(pictures);
+        }
     }
 }
+
 

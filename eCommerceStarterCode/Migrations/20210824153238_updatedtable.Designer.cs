@@ -10,8 +10,8 @@ using eCommerceStarterCode.Data;
 namespace eCommerceStarterCode.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210823233933_firstMigrate")]
-    partial class firstMigrate
+    [Migration("20210824153238_updatedtable")]
+    partial class updatedtable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
